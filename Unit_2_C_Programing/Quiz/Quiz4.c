@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : reverse.c
+ Name        : Quiz5.c
  Author      : Joseph Nader
  Version     :
  Copyright   : Your copyright notice
@@ -8,30 +8,20 @@
  ============================================================================
  */
 
-
-
 #include <stdio.h>
+#include <stdlib.h>
 
-void Reverse();
-
-int main()
+unsigned int ch_to_unit(char ch)
 {
-    printf("Enter a numder: \n\t");
-    fflush(stdin);
-    fflush(stdout);
-
-    fflush();
-    Reverse();
-    return 0;
+	return ( ch - '0');
 }
+int main(void) {
 
-void Reverse()
-{
-    int c;
-    scanf("%d", &c);
-    if (c != '\n') {
-        Reverse();
-        printf("%d", c);
-    }
+	unsigned int n ;
+	char ch ;
+	printf("enter number ");
+	fflush(stdout);fflush(stdin);
+	scanf("%d" , &ch);
+	n =  ch_to_unit('5');
+	printf("%u", n);
 }
-

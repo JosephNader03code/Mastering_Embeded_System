@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : reverse.c
+ Name        : Quiz1.c
  Author      : Joseph Nader
  Version     :
  Copyright   : Your copyright notice
@@ -8,30 +8,10 @@
  ============================================================================
  */
 
-
-
 #include <stdio.h>
+#include <stdlib.h>
 
-void Reverse();
-
-int main()
-{
-    printf("Enter a numder: \n\t");
-    fflush(stdin);
-    fflush(stdout);
-
-    fflush();
-    Reverse();
-    return 0;
+int main(void) {
+	puts("hi"); /* prints hi */
+	return EXIT_SUCCESS;
 }
-
-void Reverse()
-{
-    int c;
-    scanf("%d", &c);
-    if (c != '\n') {
-        Reverse();
-        printf("%d", c);
-    }
-}
-

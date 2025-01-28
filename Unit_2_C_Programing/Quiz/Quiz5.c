@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : reverse.c
+ Name        : Quiz5.c
  Author      : Joseph Nader
  Version     :
  Copyright   : Your copyright notice
@@ -8,30 +8,22 @@
  ============================================================================
  */
 
-
-
 #include <stdio.h>
-
-void Reverse();
-
-int main()
+#include <stdlib.h>
+int set_bit(int n ,int bit)
 {
-    printf("Enter a numder: \n\t");
-    fflush(stdin);
-    fflush(stdout);
-
-    fflush();
-    Reverse();
-    return 0;
+	return n &= ~( 1<<bit );
 }
+int main(void) {
+	int bit , n ;
 
-void Reverse()
-{
-    int c;
-    scanf("%d", &c);
-    if (c != '\n') {
-        Reverse();
-        printf("%d", c);
-    }
+	printf("enter number : ");
+	fflush(stdout);
+	scanf("%d" , &n);
+
+	printf("bit postion : ");
+	fflush(stdout);
+	scanf("%d" , &bit);
+
+	printf(" the result : %d " , set_bit(n , bit) );
 }
-

@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : reverse.c
+ Name        : quiz7.c
  Author      : Joseph Nader
  Version     :
  Copyright   : Your copyright notice
@@ -8,30 +8,20 @@
  ============================================================================
  */
 
-
-
 #include <stdio.h>
-
-void Reverse();
-
-int main()
+#include <stdlib.h>
+#include <math.h>
+int check_power3(int n)
 {
-    printf("Enter a numder: \n\t");
-    fflush(stdin);
-    fflush(stdout);
-
-    fflush();
-    Reverse();
-    return 0;
+	double i ;
+	i = log(n) / log(3);
+	return i== trunc(i);
 }
+int main(void) {
+	int n ;
+	printf("enter number :\t");
+	fflush(stdout);fflush(stdin);
+	scanf("%d", &n);
 
-void Reverse()
-{
-    int c;
-    scanf("%d", &c);
-    if (c != '\n') {
-        Reverse();
-        printf("%d", c);
-    }
+	check_power3(n) ? printf("%d ==> 0" ,n) :printf("%d ==> 1" ,n);
 }
-
