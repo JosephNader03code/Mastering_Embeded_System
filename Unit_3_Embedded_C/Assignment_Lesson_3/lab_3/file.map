@@ -1,0 +1,87 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00020000         xr
+sram             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000      0xacc
+ *(.vectors *)
+ .glue_7        0x00000000        0x0 linker stubs
+ .glue_7t       0x00000000        0x0 linker stubs
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ .v4_bx         0x00000000        0x0 linker stubs
+ .text          0x08000000       0xd4 main.o
+                0x08000000                main
+ .data          0x080000d4        0x8 main.o
+                0x080000d4                R_ODR
+                0x080000d8                g_variables
+ .bss           0x080000dc        0x0 main.o
+ .rodata        0x080000dc        0x4 main.o
+                0x080000dc                const_variables
+ .debug_info    0x080000e0      0x163 main.o
+ .debug_abbrev  0x08000243       0xee main.o
+ .debug_loc     0x08000331       0x2c main.o
+ .debug_aranges
+                0x0800035d       0x20 main.o
+ .debug_line    0x0800037d       0x9e main.o
+ .debug_str     0x0800041b      0x127 main.o
+                                0x15b (size before relaxing)
+ .comment       0x08000542       0x11 main.o
+                                 0x12 (size before relaxing)
+ .ARM.attributes
+                0x08000553       0x30 main.o
+ *fill*         0x08000583        0x1 
+ .debug_frame   0x08000584       0x28 main.o
+ .iplt          0x00000000        0x0 main.o
+ .rel.iplt      0x00000000        0x0 main.o
+ .igot.plt      0x00000000        0x0 main.o
+ .text          0x080005ac       0xbc startup.o
+                0x080005ac                NMI_Handler
+                0x080005ac                MM_Fault_Handler
+                0x080005ac                Default_Handler
+                0x080005ac                Fault_Handler
+                0x080005ac                Bus_Handler
+                0x080005ac                Usage_Handler
+                0x080005b8                Rest_Handler
+ .data          0x08000668        0x0 startup.o
+ .bss           0x08000668        0x0 startup.o
+ .vectors       0x08000668       0x1c startup.o
+                0x08000668                vectors
+ .debug_info    0x08000684      0x15c startup.o
+ .debug_abbrev  0x080007e0       0xc4 startup.o
+ .debug_loc     0x080008a4       0x64 startup.o
+ .debug_aranges
+                0x08000908       0x20 startup.o
+ .debug_line    0x08000928       0xb1 startup.o
+ .debug_str     0x080009d9       0x74 startup.o
+                                0x180 (size before relaxing)
+ .comment       0x00000000       0x12 startup.o
+ .ARM.attributes
+                0x08000a4d       0x33 startup.o
+ .debug_frame   0x08000a80       0x4c startup.o
+ *(.text *)
+ *(.rodata)
+                0x08000acc                _E_text = .
+
+.data           0x20000000        0x0 load address 0x08000acc
+                0x20000000                _S_DATA = .
+ *(.data)
+                0x20000000                _E_DATA = .
+
+.bss            0x20000000     0x1000 load address 0x08000acc
+                0x20000000                _S_bss = .
+ *(.bss)
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _E_bss = .
+                0x20000000                . = ALIGN (0x4)
+                0x20001000                . = (. + 0x1000)
+ *fill*         0x20000000     0x1000 
+                0x20001000                STACK_START_SP = .
+LOAD main.o
+LOAD startup.o
+OUTPUT(cortex_lab.elf elf32-littlearm)
